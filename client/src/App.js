@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
-const baseUrl = "http://localhost:3000";
+const baseUrl = "http://localhost:3001";
 
 function App() {
   const [items, setItems] = useState([]);
