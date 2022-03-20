@@ -23,7 +23,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         {items.map((item) => (
-          <p>{item.name}</p>
+          <p key={item.id}>{item.name}</p>
         ))}
         <a
           className="App-link"

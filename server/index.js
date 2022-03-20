@@ -5,7 +5,11 @@ const port = 3000;
 
 app.use(cors());
 
-const items = [{ name: "first" }, { name: "second" }, { name: "thrid" }];
+const items = [
+  { id: 1, name: "first" },
+  { id: 2, name: "second" },
+  { id: 3, name: "thrid" },
+];
 
 app.get("/items", (req, res) => {
   res.send({ items });
