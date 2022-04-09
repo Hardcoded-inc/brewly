@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     fetch(`${baseUrl}/coffee`)
       .then((res) => res.json())
-      .then(({ coffee }) => {
+      .then((coffee) => {
         console.log(coffee);
         setCoffee(coffee);
       });
