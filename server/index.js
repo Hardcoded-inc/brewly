@@ -5,14 +5,38 @@ const port = 3001;
 
 app.use(cors());
 
-const items = [
-  { id: 1, name: "first" },
-  { id: 2, name: "second" },
-  { id: 3, name: "thrid" },
+const mockedCoffeee = [
+  {
+    id: 1,
+    name: "Mazenda Moinho",
+    acidity: "high",
+    bitterness: "medium",
+    sweetness: "low",
+    origin: "Brasil",
+    flavors: ["orange", "grapes", "rose"],
+  },
+  {
+    id: 2,
+    name: "Caffe Grano Nicaragua",
+    acidity: "high",
+    bitterness: "medium",
+    sweetness: "low",
+    origin: "Nikaragua",
+    flavors: ["raspberry", "chocolade", "lemon"],
+  },
+  {
+    id: 3,
+    name: "Kafar classic",
+    acidity: "high",
+    bitterness: "medium",
+    sweetness: "low",
+    origin: "India",
+    flavors: ["pear", "caremel", "cacao"],
+  },
 ];
 
-app.get("/items", (req, res) => {
-  res.send({ items });
+app.get("/coffee", (req, res) => {
+  res.send({ coffee: mockedCoffeee });
 });
 
 app.listen(port, () => {

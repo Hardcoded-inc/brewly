@@ -5,34 +5,31 @@ import "./App.css";
 const baseUrl = "http://localhost:3001";
 
 function App() {
-  const [items, setItems] = useState([]);
+  const [coffee, setCoffee] = useState([]);
 
-  console.log(items);
+  console.log(coffee);
 
   useEffect(() => {
-    fetch(`${baseUrl}/items`)
+    fetch(`${baseUrl}/coffee`)
       .then((res) => res.json())
-      .then(({ items }) => {
-        console.log(items);
-        setItems(items);
+      .then(({ coffee }) => {
+        console.log(coffee);
+        setCoffee(coffee);
       });
   }, []);
 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        {items.map((item) => (
-          <p key={item.id}>{item.name}</p>
+        {coffee.map((item) => (
+          <p key={item.id}>
+            {Object.keys(item).map((key) => (
+              <div style={{ fontSize: 24 }}>
+                {key}: {item[key]}
+              </div>
+            ))}
+          </p>
         ))}
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
