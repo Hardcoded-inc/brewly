@@ -35,13 +35,70 @@ app.use(cors());
 app.get("/coffee", (req, res) => {
   Coffee.find({})
     .then((data) => {
-      console.log(data);
-      res.send(data);
+      res.status(200).send(data);
     })
     .catch((err) => {
       console.error("error: " + err);
+      res.status(500).send(err);
     });
 });
+
+app.post("/coffee", (req, res) => {
+  const newCoffee = new Coffee(req.body);
+
+  newCoffee
+    .save()
+    .then((savedCoffee) => {
+      res.status(200).send(savedCoffee);
+    })
+    .catch((err) => {
+      console.error("error: " + err);
+      res.status(500).send(err);
+    });
+});
+
+//
+// // INSERT
+// app.post("/user", async (req, res) => {
+//   try {
+//     const newUser = new Users(req.body);
+//
+//     newUser.save(function (err, data) {
+//       if (err) {
+//         console.log(error);
+//       } else {
+//         res.send("Data inserted");
+//       }
+//     });
+//   } catch (err) {
+//     console.log("~ err", err);
+//   }
+// });
+//
+// // DELETE
+// app.delete("/user/:id", async (req, res) => {
+//   try {
+//     const id = req.params.id;
+//     const userDelete = await Users.remove({ _id: id });
+//     res.send("User deleted successfully");
+//   } catch (err) {
+//     console.log("~ err", err);
+//   }
+// });
+//
+// // UPDATE
+// app.put("/user/:id", async (req, res) => {
+//   try {
+//     const id = req.params.id;
+//     const userDelete = await Users.findByIdAndUpdate(
+//       { _id: id },
+//       { ...req.body }
+//     );
+//     res.send("User updated successfully");
+//   } catch (err) {
+//     console.log("~ err", err);
+//   }
+// });
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
