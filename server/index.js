@@ -21,41 +21,29 @@ const app = express();
 app.use(cors());
 
 app.get("/coffee", (req, res) => {
-  Coffee.find({})
-    .then((data) => {
-      res.status(200).send(data);
-    })
-    .catch((err) => {
-      console.error("error: " + err);
-      res.status(500).send(err);
-    });
+  Coffee.find({}, (err, data) => {
+    if (err) return res.status(500).send(err);
+    return res.status(200).send(data);
+  });
 });
 
 app.post("/coffee", (req, res) => {
   const newCoffee = new Coffee(req.body);
 
-  newCoffee
-    .save()
-    .then((savedCoffee) => {
-      res.status(200).send(savedCoffee);
-    })
-    .catch((err) => {
-      console.error("error: " + err);
-      res.status(500).send(err);
-    });
+  newCoffee.save((err, coffee) => {
+    if (err) return res.status(500).send(err);
+    return res.status(200).send(coffee);
+  });
 });
 
-// // DELETE
-// app.delete("/user/:id", async (req, res) => {
-//   try {
-//     const id = req.params.id;
-//     const userDelete = await Users.remove({ _id: id });
-//     res.send("User deleted successfully");
-//   } catch (err) {
-//     console.log("~ err", err);
-//   }
-// });
-//
+app.delete("/coffee/:id", (req, res) => {
+  const { id } = req.params;
+  Coffee.findByIdAndRemove(id, (err, coffee) => {
+    if (err) return res.status(500).send(err);
+    return res.status(200).send(coffee);
+  });
+});
+
 // // UPDATE
 // app.put("/user/:id", async (req, res) => {
 //   try {
