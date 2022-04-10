@@ -1,6 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const { Coffee } = require("./models");
+
+// Load .env into process.env
 require("dotenv").config();
 
 // Connect to DB
@@ -12,24 +15,9 @@ mongoose.connection.on("connected", () => {
   console.log("Connected to mongo db");
 });
 
-// Schema
-const Schema = mongoose.Schema;
-const CoffeeSchema = new Schema({
-  name: String,
-  acidity: String,
-  bitterness: String,
-  sweetness: String,
-  origin: String,
-  flavors: [String],
-});
-
-const Coffee = mongoose.model("Coffee", CoffeeSchema);
-
 // App
 
 const app = express();
-const port = 3001;
-
 app.use(cors());
 
 app.get("/coffee", (req, res) => {
@@ -57,24 +45,6 @@ app.post("/coffee", (req, res) => {
     });
 });
 
-//
-// // INSERT
-// app.post("/user", async (req, res) => {
-//   try {
-//     const newUser = new Users(req.body);
-//
-//     newUser.save(function (err, data) {
-//       if (err) {
-//         console.log(error);
-//       } else {
-//         res.send("Data inserted");
-//       }
-//     });
-//   } catch (err) {
-//     console.log("~ err", err);
-//   }
-// });
-//
 // // DELETE
 // app.delete("/user/:id", async (req, res) => {
 //   try {
@@ -100,6 +70,7 @@ app.post("/coffee", (req, res) => {
 //   }
 // });
 
+const port = process.env.PORT;
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Example app listening on port ${port || 3001} `);
 });
