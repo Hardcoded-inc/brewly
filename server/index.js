@@ -44,19 +44,13 @@ app.delete("/coffee/:id", (req, res) => {
   });
 });
 
-// // UPDATE
-// app.put("/user/:id", async (req, res) => {
-//   try {
-//     const id = req.params.id;
-//     const userDelete = await Users.findByIdAndUpdate(
-//       { _id: id },
-//       { ...req.body }
-//     );
-//     res.send("User updated successfully");
-//   } catch (err) {
-//     console.log("~ err", err);
-//   }
-// });
+app.put("/coffee/:id", (req, res) => {
+  const { id } = req.params;
+  Coffee.findByIdAndUpdate(id, req.body, { new: true }, (err, coffee) => {
+    if (err) return res.status(400).send(err);
+    return res.status(200).send(coffee);
+  });
+});
 
 const port = process.env.PORT;
 app.listen(port, () => {
