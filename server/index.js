@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const { Coffee } = require("./models");
 const { coffeeRoutes } = require("./routes");
+const bodyParser = require("body-parser");
 
 // Load .env into process.env
 require("dotenv").config();
@@ -20,7 +20,8 @@ mongoose.connection.on("connected", () => {
 
 const app = express();
 app.use(cors());
-app.use("/coffe", coffeeRoutes);
+app.use(bodyParser);
+app.use("/coffee", coffeeRoutes);
 
 const port = process.env.PORT;
 app.listen(port, () => {

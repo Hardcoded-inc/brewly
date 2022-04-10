@@ -1,4 +1,5 @@
 const express = require("express");
+const { Coffee } = require("../models");
 
 const router = express.Router();
 
