@@ -20,6 +20,14 @@ mongoose.connection.on("connected", () => {
 const app = express();
 app.use(cors());
 
+app.get("/coffee:id", (req, res) => {
+  const { id } = req.params;
+  Coffee.findOne({ _id: id }, (err, data) => {
+    if (err) return res.status(500).send(err);
+    return res.status(200).send(data);
+  });
+});
+
 app.get("/coffee", (req, res) => {
   Coffee.find({}, (err, data) => {
     if (err) return res.status(500).send(err);
