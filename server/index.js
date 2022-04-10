@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const { Coffee } = require("./models");
+const { coffeeRoutes } = require("./routes");
 
 // Load .env into process.env
 require("dotenv").config();
@@ -19,46 +20,7 @@ mongoose.connection.on("connected", () => {
 
 const app = express();
 app.use(cors());
-
-app.get("/coffee:id", (req, res) => {
-  const { id } = req.params;
-  Coffee.findOne({ _id: id }, (err, data) => {
-    if (err) return res.status(500).send(err);
-    return res.status(200).send(data);
-  });
-});
-
-app.get("/coffee", (req, res) => {
-  Coffee.find({}, (err, data) => {
-    if (err) return res.status(500).send(err);
-    return res.status(200).send(data);
-  });
-});
-
-app.post("/coffee", (req, res) => {
-  const newCoffee = new Coffee(req.body);
-
-  newCoffee.save((err, coffee) => {
-    if (err) return res.status(500).send(err);
-    return res.status(200).send(coffee);
-  });
-});
-
-app.delete("/coffee/:id", (req, res) => {
-  const { id } = req.params;
-  Coffee.findByIdAndRemove(id, (err, coffee) => {
-    if (err) return res.status(500).send(err);
-    return res.status(200).send(coffee);
-  });
-});
-
-app.put("/coffee/:id", (req, res) => {
-  const { id } = req.params;
-  Coffee.findByIdAndUpdate(id, req.body, { new: true }, (err, coffee) => {
-    if (err) return res.status(400).send(err);
-    return res.status(200).send(coffee);
-  });
-});
+app.use("/coffe", coffeeRoutes);
 
 const port = process.env.PORT;
 app.listen(port, () => {
