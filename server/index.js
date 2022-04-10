@@ -1,11 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 // Connect to DB
-
-const dbUri =
-  "mongodb+srv://admin:admin@brewlydb.h1xg0.mongodb.net/brewlydb?retryWrites=true&w=majority";
+const mongoUser = process.env.MONGO_DB_USER_LOGIN;
+const mongoPassword = process.env.MONGO_DB_USER_PASSWORD;
+const dbUri = `mongodb+srv://${mongoUser}:${mongoPassword}@brewlydb.h1xg0.mongodb.net/brewlydb?retryWrites=true&w=majority`;
 mongoose.connect(dbUri);
 mongoose.connection.on("connected", () => {
   console.log("Connected to mongo db");
