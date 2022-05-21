@@ -20,7 +20,7 @@ mongoose.connection.on("connected", () => {
 
 const app = express();
 app.use(cors());
-app.use(bodyParser);
+app.use(bodyParser.json());
 app.use("/coffee", coffeeRoutes);
 
 const port = process.env.PORT;
