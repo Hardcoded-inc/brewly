@@ -1,3 +1,4 @@
 import CoffeeListing from "./CoffeeListing";
+import Layout from "./Layout";
 
-export { CoffeeListing };
+export { CoffeeListing, Layout };
