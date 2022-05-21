@@ -1,35 +1,25 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import { CoffeeListing } from "./components";
 
 const baseUrl = "http://localhost:3001";
 
 function App() {
-  const [coffee, setCoffee] = useState([]);
-
-  console.log(coffee);
+  const [coffeeList, setCoffeeList] = useState([]);
 
   useEffect(() => {
     fetch(`${baseUrl}/coffee`)
       .then((res) => res.json())
-      .then((coffee) => {
-        console.log(coffee);
-        setCoffee(coffee);
+      .then((coffeeList) => {
+        console.log(coffeeList);
+        setCoffeeList(coffeeList);
       });
   }, []);
 
   return (
     <div className="App">
-      <header className="App-header">
-        {coffee.map((item) => (
-          <p key={item.id}>
-            {Object.keys(item).map((key) => (
-              <div style={{ fontSize: 24 }}>
-                {key}: {item[key]}
-              </div>
-            ))}
-          </p>
-        ))}
-      </header>
+      <header className="App-header"></header>
+      <CoffeeListing coffeeList={coffeeList} />
     </div>
   );
 }
