@@ -1,9 +1,17 @@
 import { useEffect, useState } from "react";
 import { CoffeeListing, Layout } from "./components";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "./css/App.css";
 import "./css/Layout.css";
 import "./css/CoffeeListing.css";
+
+import Home from "./pages/Home";
+import List from "./pages/List";
+import CoffeeSingle from "./pages/CoffeeSingle";
+import Add from "./pages/Add";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 const baseUrl = "http://localhost:3001";
 
@@ -22,7 +30,14 @@ function App() {
   return (
     <div className="App">
       <Layout>
-        <CoffeeListing coffeeList={coffeeList} />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/listing" element={<List />} />
+          <Route path="/listing/:id" element={<CoffeeSingle />} />
+          <Route path="/add-coffee" element={<Add />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
       </Layout>
     </div>
   );
