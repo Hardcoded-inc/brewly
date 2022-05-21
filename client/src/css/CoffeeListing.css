@@ -1,8 +1,5 @@
-body {
-  font-family: "Lato";
-}
-
 .coffe-listing {
+  width: 100%;
   display: flex;
   flex-direction: column;
 }

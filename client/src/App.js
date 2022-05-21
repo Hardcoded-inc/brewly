@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
-import "./App.css";
-import { CoffeeListing } from "./components";
+import { CoffeeListing, Layout } from "./components";
+
+import "./css/App.css";
+import "./css/Layout.css";
+import "./css/CoffeeListing.css";
 
 const baseUrl = "http://localhost:3001";
 
@@ -18,8 +21,9 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header"></header>
-      <CoffeeListing coffeeList={coffeeList} />
+      <Layout>
+        <CoffeeListing coffeeList={coffeeList} />
+      </Layout>
     </div>
   );
 }
