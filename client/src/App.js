@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { CoffeeListing, Layout } from "./components";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Layout } from "./components";
+import { Routes, Route } from "react-router-dom";
 
 import "./css/App.css";
 import "./css/Layout.css";
@@ -32,7 +32,7 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/listing" element={<List />} />
+          <Route path="/listing" element={<List coffeeList={coffeeList} />} />
           <Route path="/listing/:id" element={<CoffeeSingle />} />
           <Route path="/add-coffee" element={<Add />} />
           <Route path="/login" element={<Login />} />

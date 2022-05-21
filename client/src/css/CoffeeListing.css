@@ -1,7 +1,8 @@
-.coffe-listing {
+.coffee-listing {
   width: 100%;
   display: flex;
   flex-direction: column;
+  width: 1000px;
 }
 
 .coffee-tile {
