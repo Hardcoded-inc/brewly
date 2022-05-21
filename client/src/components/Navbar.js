@@ -4,6 +4,7 @@ import profile from "../assets/profile.svg";
 
 const navItems = [
   { name: "home" },
+  { name: "coffee listing" },
   { name: "add coffee" },
   { name: "coffee quiz" },
 ];

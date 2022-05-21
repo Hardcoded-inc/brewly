@@ -59,6 +59,26 @@
 }
 
 .sidebar {
-  width: 200px;
-  border: 1px solid grey;
+  width: 270px;
+  height: fit-content;
+  border: 1px solid #dfdfdf;
+  border-radius: 5px;
+}
+
+.sidebar__item {
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 12px 20px;
+
+  border-bottom: 1px solid #dfdfdf;
+  transition: background 0.1s ease-in-out;
+}
+
+.sidebar__item:last-of-type {
+  border-bottom: none;
+}
+
+.sidebar__item:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+  cursor: pointer;
 }
