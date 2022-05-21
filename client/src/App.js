@@ -22,6 +22,7 @@ function App() {
       <header className="App-header">
         {coffee.map((item) => (
           <p key={item.id}>
+            <img src={item.imgUrl}></img>
             {Object.keys(item).map((key) => (
               <div style={{ fontSize: 24 }}>
                 {key}: {item[key]}
