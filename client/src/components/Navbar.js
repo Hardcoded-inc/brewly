@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 const navItems = [
   { link: "", name: "home" },
-  { link: "list", name: "coffee listing" },
-  { link: "add", name: "add coffee" },
+  { link: "listing", name: "coffee listing" },
+  { link: "add-coffee", name: "add coffee" },
 ];
 
 const NavBar = () => {
